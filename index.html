@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8SZBR3LX0E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8SZBR3LX0E');
+</script>
 <meta charset="UTF-8">
 <title>Balotto — Smart Lotto Patterns</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +25,19 @@ body{background:#0b0b0b;color:#fff;}
     text-align:center;
     padding:120px 20px;
     background:linear-gradient(180deg,#000 0%,#111 100%);
+}
+
+/* ADD TO HOME SCREEN BUTTON */
+.a2hs-btn{
+    display:none;
+    padding:12px 28px;
+    font-weight:bold;
+    border-radius:6px;
+    margin:0 auto 25px auto;
+    background:#f5c76b;
+    color:#000;
+    border:none;
+    cursor:pointer;
 }
 
 /* QUOTES */
@@ -143,7 +165,6 @@ body{background:#0b0b0b;color:#fff;}
     font-weight:bold;
     text-decoration:none;
 }
-</style>
 </head>
 
 <body>
@@ -151,6 +172,9 @@ body{background:#0b0b0b;color:#fff;}
 <a href="https://wa.me/233533715064" class="whatsapp-btn" target="_blank">💬 Chat WhatsApp</a>
 
 <section class="hero">
+
+    <!-- ADD TO HOME SCREEN -->
+    <button class="a2hs-btn" id="a2hsBtn">Add to Home Screen</button>
 
     <!-- QUOTES -->
     <div class="quotes">
@@ -210,30 +234,21 @@ body{background:#0b0b0b;color:#fff;}
 </footer>
 
 <script>
-/* GAMES + BANKER with 20h Ghana Time logic */
+/* GAMES */
 const games = [
  {name:"SUNDAY ASEDA", banker:"01"},
  {name:"MONDAY SPECIAL", banker:"12"},
  {name:"LUCKY TUESDAY", banker:"05"},
  {name:"MID-WEEK", banker:"09"},
- {name:"FORTUNE THURSDAY", banker:"14"},
+ {name:"FORTUNE THURSDAY", banker:"20"},
  {name:"FRIDAY BONANZA", banker:"03"},
  {name:"NATIONAL WEEKLY", banker:"07"}
 ];
 
-const now = new Date();
-let dayIndex = now.getUTCDay(); // 0=Sunday ... 6=Saturday
-const hour = now.getUTCHours();
-
-// After 20h GMT, show next day's banker
-if(hour >= 20){
-    dayIndex = (dayIndex + 1) % 7;
-}
-
-const game = games[dayIndex];
+const game = games[new Date().getDay()];
 document.getElementById("gameName").textContent = game.name;
-
 const bankerEl = document.getElementById("bankerNum");
+
 function animateBanker(){
     let c=0;
     const i=setInterval(()=>{
@@ -244,10 +259,7 @@ function animateBanker(){
             bankerEl.style.animation="bounce 1s infinite alternate, glow 1.8s infinite alternate";
         }
     },100);
-    setTimeout(()=>{
-        bankerEl.style.animation="";
-        animateBanker();
-    },5000);
+    setTimeout(()=>{bankerEl.style.animation="";animateBanker();},5000);
 }
 animateBanker();
 
@@ -274,6 +286,7 @@ const quotes=[
  "Probability favors consistency.",
  "Mathematics turns luck into logic."
 ];
+
 let qi=0;
 const qEl=document.getElementById("quoteText");
 function rotateQuotes(){
@@ -283,15 +296,37 @@ function rotateQuotes(){
 rotateQuotes();
 setInterval(rotateQuotes,3000);
 
+/* PWA: Add to Home Screen */
+let deferredPrompt;
+const a2hsBtn = document.getElementById('a2hsBtn');
+
+window.addEventListener('beforeinstallprompt', (e)=>{
+    e.preventDefault();
+    deferredPrompt = e;
+    a2hsBtn.style.display = 'inline-block';
+});
+
+a2hsBtn.addEventListener('click', ()=>{
+    if(deferredPrompt){
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(choice=>{
+            deferredPrompt=null;
+            a2hsBtn.style.display='none';
+        });
+    }
+});
+
 /* SERVICE WORKER */
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js")
-      .then(reg => console.log("Service Worker registered"))
-      .catch(err => console.log("Service Worker error", err));
-  });
+if("serviceWorker" in navigator){
+    window.addEventListener("load", ()=>{
+        navigator.serviceWorker.register("sw.js")
+        .then(reg => console.log("Service Worker registered"))
+        .catch(err => console.log("Service Worker error", err));
+    });
 }
 </script>
 
 </body>
+
 </html>
+
