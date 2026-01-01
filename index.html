@@ -2,169 +2,171 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8SZBR3LX0E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SZBR3LX0E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-8SZBR3LX0E');
-</script>
-<meta charset="UTF-8">
-<title>Balotto — Smart Lotto Patterns</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="manifest" href="manifest.json">
+      gtag('config', 'G-8SZBR3LX0E');
+    </script>
 
-<style>
-/* RESET */
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
-body{background:#0b0b0b;color:#fff;}
+    <meta charset="UTF-8">
+    <title>Balotto — Smart Lotto Patterns</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
 
-/* HERO */
-.hero{
-    text-align:center;
-    padding:120px 20px;
-    background:linear-gradient(180deg,#000 0%,#111 100%);
-}
+    <style>
+    /* RESET */
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+    body{background:#0b0b0b;color:#fff;}
 
-/* ADD TO HOME SCREEN BUTTON */
-.a2hs-btn{
-    display:none;
-    padding:12px 28px;
-    font-weight:bold;
-    border-radius:6px;
-    margin:0 auto 25px auto;
-    background:#f5c76b;
-    color:#000;
-    border:none;
-    cursor:pointer;
-}
+    /* HERO */
+    .hero{
+        text-align:center;
+        padding:120px 20px;
+        background:linear-gradient(180deg,#000 0%,#111 100%);
+    }
 
-/* QUOTES */
-.quotes{
-    margin-bottom:25px;
-    min-height:40px;
-}
-.quote-text{
-    font-size:16px;
-    font-style:italic;
-    color:#d8d8d8;
-    opacity:0;
-    animation: fadeQuote 3s infinite;
-}
-@keyframes fadeQuote{
-    0%{opacity:0;transform:translateY(8px);}
-    20%{opacity:1;transform:translateY(0);}
-    80%{opacity:1;}
-    100%{opacity:0;transform:translateY(-8px);}
-}
+    /* ADD TO HOME SCREEN BUTTON */
+    .a2hs-btn{
+        display:none;
+        padding:12px 28px;
+        font-weight:bold;
+        border-radius:6px;
+        margin:0 auto 25px auto;
+        background:#f5c76b;
+        color:#000;
+        border:none;
+        cursor:pointer;
+    }
 
-/* LOGO */
-.hero-logo{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:14px;
-    margin-bottom:25px;
-}
-.hero-logo img{
-    height:60px;
-}
-.hero-logo span{
-    font-size:32px;
-    font-weight:bold;
-    color:#f5c76b;
-}
+    /* QUOTES */
+    .quotes{
+        margin-bottom:25px;
+        min-height:40px;
+    }
+    .quote-text{
+        font-size:16px;
+        font-style:italic;
+        color:#d8d8d8;
+        opacity:0;
+        animation: fadeQuote 3s infinite;
+    }
+    @keyframes fadeQuote{
+        0%{opacity:0;transform:translateY(8px);}
+        20%{opacity:1;transform:translateY(0);}
+        80%{opacity:1;}
+        100%{opacity:0;transform:translateY(-8px);}
+    }
 
-/* BANKER */
-.banker{margin-bottom:40px;}
-.banker h2{color:#f5c76b;font-size:28px;}
-.banker .game-name{
-    margin-top:10px;
-    font-size:20px;
-    font-weight:bold;
-    color:#f5c76b;
-}
-#bankerNum{
-    font-size:64px;
-    font-weight:bold;
-    margin-top:10px;
-    display:inline-block;
-    animation: glow 1.8s infinite alternate;
-}
-.results-link{
-    display:block;
-    margin-top:15px;
-    color:#25D366;
-    font-weight:bold;
-    text-decoration:none;
-}
-.results-link:hover{text-decoration:underline;}
+    /* LOGO */
+    .hero-logo{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:14px;
+        margin-bottom:25px;
+    }
+    .hero-logo img{
+        height:60px;
+    }
+    .hero-logo span{
+        font-size:32px;
+        font-weight:bold;
+        color:#f5c76b;
+    }
 
-@keyframes bounce{
-    from{transform:translateY(0);}
-    to{transform:translateY(-15px);}
-}
-@keyframes glow{
-    0%{text-shadow:0 0 6px rgba(245,199,107,0.4);}
-    100%{text-shadow:0 0 22px rgba(245,199,107,0.9);}
-}
+    /* BANKER */
+    .banker{margin-bottom:40px;}
+    .banker h2{color:#f5c76b;font-size:28px;}
+    .banker .game-name{
+        margin-top:10px;
+        font-size:20px;
+        font-weight:bold;
+        color:#f5c76b;
+    }
+    #bankerNum{
+        font-size:64px;
+        font-weight:bold;
+        margin-top:10px;
+        display:inline-block;
+        animation: glow 1.8s infinite alternate;
+    }
+    .results-link{
+        display:block;
+        margin-top:15px;
+        color:#25D366;
+        font-weight:bold;
+        text-decoration:none;
+    }
+    .results-link:hover{text-decoration:underline;}
 
-/* TEXT */
-.hero h1{font-size:48px;margin-bottom:20px;color:#f5c76b;}
-.hero p{font-size:18px;opacity:.9;}
-.hero-buttons{margin-top:40px;}
-.btn{
-    padding:14px 30px;
-    text-decoration:none;
-    font-weight:bold;
-    border-radius:6px;
-    margin:10px;
-    display:inline-block;
-}
-.primary{background:#f5c76b;color:#000;}
-.secondary{border:2px solid #f5c76b;color:#f5c76b;}
-.secondary:hover{background:#f5c76b;color:#000;}
+    @keyframes bounce{
+        from{transform:translateY(0);}
+        to{transform:translateY(-15px);}
+    }
+    @keyframes glow{
+        0%{text-shadow:0 0 6px rgba(245,199,107,0.4);}
+        100%{text-shadow:0 0 22px rgba(245,199,107,0.9);}
+    }
 
-/* FEATURES */
-.features{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:30px;
-    padding:80px 20px;
-    background:#0f0f0f;
-}
-.feature{
-    background:#151515;
-    padding:30px;
-    width:260px;
-    border-radius:10px;
-}
-.feature h3{color:#f5c76b;margin-bottom:15px;}
+    /* TEXT */
+    .hero h1{font-size:48px;margin-bottom:20px;color:#f5c76b;}
+    .hero p{font-size:18px;opacity:.9;}
+    .hero-buttons{margin-top:40px;}
+    .btn{
+        padding:14px 30px;
+        text-decoration:none;
+        font-weight:bold;
+        border-radius:6px;
+        margin:10px;
+        display:inline-block;
+    }
+    .primary{background:#f5c76b;color:#000;}
+    .secondary{border:2px solid #f5c76b;color:#f5c76b;}
+    .secondary:hover{background:#f5c76b;color:#000;}
 
-/* FOOTER */
-.footer{
-    text-align:center;
-    padding:30px;
-    background:#000;
-    font-size:14px;
-    opacity:.7;
-}
-.footer .slogan{margin-top:8px;color:#f5c76b;}
+    /* FEATURES */
+    .features{
+        display:flex;
+        justify-content:center;
+        flex-wrap:wrap;
+        gap:30px;
+        padding:80px 20px;
+        background:#0f0f0f;
+    }
+    .feature{
+        background:#151515;
+        padding:30px;
+        width:260px;
+        border-radius:10px;
+    }
+    .feature h3{color:#f5c76b;margin-bottom:15px;}
 
-/* WHATSAPP */
-.whatsapp-btn{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#25D366;
-    color:#fff;
-    padding:14px 18px;
-    border-radius:50px;
-    font-weight:bold;
-    text-decoration:none;
-}
+    /* FOOTER */
+    .footer{
+        text-align:center;
+        padding:30px;
+        background:#000;
+        font-size:14px;
+        opacity:.7;
+    }
+    .footer .slogan{margin-top:8px;color:#f5c76b;}
+
+    /* WHATSAPP */
+    .whatsapp-btn{
+        position:fixed;
+        bottom:20px;
+        right:20px;
+        background:#25D366;
+        color:#fff;
+        padding:14px 18px;
+        border-radius:50px;
+        font-weight:bold;
+        text-decoration:none;
+    }
+    </style>
 </head>
 
 <body>
@@ -234,7 +236,7 @@ body{background:#0b0b0b;color:#fff;}
 </footer>
 
 <script>
-/* GAMES */
+/* GAMES (Banker changes at 20h GMT) */
 const games = [
  {name:"SUNDAY ASEDA", banker:"01"},
  {name:"MONDAY SPECIAL", banker:"12"},
@@ -245,21 +247,34 @@ const games = [
  {name:"NATIONAL WEEKLY", banker:"07"}
 ];
 
-const game = games[new Date().getDay()];
-document.getElementById("gameName").textContent = game.name;
-const bankerEl = document.getElementById("bankerNum");
+// Heure actuelle GMT
+const now = new Date();
+let dayIndex = now.getUTCDay();
+const hour = now.getUTCHours();
 
+// Si >= 20h GMT, passer au jour suivant
+if(hour >= 20){
+    dayIndex = (dayIndex + 1) % 7;
+}
+
+const game = games[dayIndex];
+document.getElementById("gameName").textContent = game.name;
+
+const bankerEl = document.getElementById("bankerNum");
 function animateBanker(){
     let c=0;
     const i=setInterval(()=>{
-        bankerEl.textContent=String(Math.floor(Math.random()*90)+1).padStart(2,'0');
-        if(++c>=20){
+        bankerEl.textContent = String(Math.floor(Math.random()*90)+1).padStart(2,'0');
+        if(++c >= 20){
             clearInterval(i);
-            bankerEl.textContent=game.banker;
-            bankerEl.style.animation="bounce 1s infinite alternate, glow 1.8s infinite alternate";
+            bankerEl.textContent = game.banker;
+            bankerEl.style.animation = "bounce 1s infinite alternate, glow 1.8s infinite alternate";
         }
-    },100);
-    setTimeout(()=>{bankerEl.style.animation="";animateBanker();},5000);
+    }, 100);
+    setTimeout(()=>{
+        bankerEl.style.animation = "";
+        animateBanker();
+    }, 5000);
 }
 animateBanker();
 
@@ -286,7 +301,6 @@ const quotes=[
  "Probability favors consistency.",
  "Mathematics turns luck into logic."
 ];
-
 let qi=0;
 const qEl=document.getElementById("quoteText");
 function rotateQuotes(){
@@ -299,13 +313,11 @@ setInterval(rotateQuotes,3000);
 /* PWA: Add to Home Screen */
 let deferredPrompt;
 const a2hsBtn = document.getElementById('a2hsBtn');
-
 window.addEventListener('beforeinstallprompt', (e)=>{
     e.preventDefault();
     deferredPrompt = e;
     a2hsBtn.style.display = 'inline-block';
 });
-
 a2hsBtn.addEventListener('click', ()=>{
     if(deferredPrompt){
         deferredPrompt.prompt();
@@ -327,6 +339,4 @@ if("serviceWorker" in navigator){
 </script>
 
 </body>
-
 </html>
-
