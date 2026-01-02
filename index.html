@@ -1,128 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>BA LOTTO</title>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SZBR3LX0E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8SZBR3LX0E');
+  </script>
 
-  <!-- FORCE NO CACHE -->
-  <meta http-equiv="Cache-Control" content="no-store" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
+  <meta charset="UTF-8">
+  <title>Balotto — Smart Lotto Patterns</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="manifest.json">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+body{
+  background:#0b0b0b;
+  color:#fff;
+  min-height:100vh;
+}
 
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#000000" />
+/* HERO */
+.hero{
+  text-align:center;
+  padding:100px 20px;
+  background:linear-gradient(180deg,#000 0%,#111 100%);
+}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .card {
-      background: #111;
-      padding: 25px;
-      border-radius: 12px;
-      text-align: center;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 20px rgba(255,215,0,0.4);
-    }
-    h1 {
-      color: gold;
-      margin-bottom: 10px;
-    }
-    .banker {
-      font-size: 48px;
-      font-weight: bold;
-      margin: 15px 0;
-      color: #00ffcc;
-    }
-    .day {
-      font-size: 20px;
-      margin-top: 10px;
-      opacity: 0.9;
-    }
-  </style>
+/* MOBILE FIX */
+@media (max-height:720px){
+  .hero{padding-top:70px;}
+}
+
+/* ADD TO HOME */
+.a2hs-btn{
+  display:none;
+  padding:12px 28px;
+  font-weight:bold;
+  border-radius:6px;
+  margin:0 auto 25px;
+  background:#f5c76b;
+  color:#000;
+  border:none;
+}
+
+/* QUOTES */
+.quotes{margin-bottom:25px;min-height:40px;}
+.quote-text{
+  font-size:16px;
+  font-style:italic;
+  color:#d8d8d8;
+  animation:fadeQuote 3s infinite;
+}
+@keyframes fadeQuote{
+  0%{opacity:0;transform:translateY(8px);}
+  20%{opacity:1;}
+  80%{opacity:1;}
+  100%{opacity:0;transform:translateY(-8px);}
+}
+
+/* LOGO */
+.hero-logo{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  margin-bottom:25px;
+}
+.hero-logo img{height:60px;}
+.hero-logo span{
+  font-size:32px;
+  font-weight:bold;
+  color:#f5c76b;
+}
+
+/* BANKER */
+.banker{margin-bottom:40px;}
+.banker h2{color:#f5c76b;font-size:28px;}
+.game-name{
+  margin-top:10px;
+  font-size:20px;
+  font-weight:bold;
+  color:#f5c76b;
+}
+#bankerNum{
+  font-size:64px;
+  font-weight:bold;
+  margin-top:10px;
+  animation:glow 1.8s infinite alternate;
+}
+@keyframes glow{
+  from{text-shadow:0 0 6px rgba(245,199,107,.4);}
+  to{text-shadow:0 0 22px rgba(245,199,107,.9);}
+}
+
+/* BUTTONS */
+.hero-buttons{margin-top:40px;}
+.btn{
+  padding:14px 30px;
+  font-weight:bold;
+  border-radius:6px;
+  margin:10px;
+  display:inline-block;
+  text-decoration:none;
+}
+.primary{background:#f5c76b;color:#000;}
+.secondary{border:2px solid #f5c76b;color:#f5c76b;}
+.secondary:hover{background:#f5c76b;color:#000;}
+
+/* FEATURES */
+.features{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:30px;
+  padding:80px 20px;
+  background:#0f0f0f;
+}
+.feature{
+  background:#151515;
+  padding:30px;
+  width:260px;
+  border-radius:10px;
+}
+.feature h3{color:#f5c76b;margin-bottom:15px;}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:30px;
+  background:#000;
+  font-size:14px;
+  opacity:.7;
+}
+.footer .slogan{color:#f5c76b;margin-top:8px;}
+
+/* WHATSAPP */
+.whatsapp-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:#fff;
+  padding:14px 18px;
+  border-radius:50px;
+  font-weight:bold;
+  text-decoration:none;
+}
+</style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>BA LOTTO</h1>
-    <div class="banker" id="banker">--</div>
-    <div class="day" id="day">Loading...</div>
-  </div>
 
-  <script>
-    /* =========================
-       GHANA TIME (UTC +0)
-       CHANGE DAY AT 20:00
-    ========================== */
+<a href="https://wa.me/233533715064" class="whatsapp-btn">💬 Chat WhatsApp</a>
 
-    const bankers = {
-      MONDAY: "12",
-      TUESDAY: "45",
-      WEDNESDAY: "67",
-      THURSDAY: "89",
-      FRIDAY: "30",   // ← ICI LE 30
-      SATURDAY: "21",
-      SUNDAY: "54"
-    };
+<section class="hero">
 
-    const labels = {
-      MONDAY: "MAGIC MONDAY",
-      TUESDAY: "TARGET TUESDAY",
-      WEDNESDAY: "WINNING WEDNESDAY",
-      THURSDAY: "FORTUNE THURSDAY",
-      FRIDAY: "FRIDAY BONANZA",
-      SATURDAY: "SUPER SATURDAY",
-      SUNDAY: "SURE SUNDAY"
-    };
+<button class="a2hs-btn" id="a2hsBtn">Add to Home Screen</button>
 
-    function getLottoDay() {
-      const now = new Date();
+<div class="quotes">
+  <div class="quote-text" id="quoteText"></div>
+</div>
 
-      // Ghana is UTC+0 → no offset needed
-      let dayIndex = now.getUTCDay(); // 0 = Sunday
-      const hour = now.getUTCHours();
+<div class="hero-logo">
+  <img src="assets/logo.png" alt="Balotto">
+  <span>Balotto</span>
+</div>
 
-      // If before 20:00 → use previous day
-      if (hour < 20) {
-        dayIndex = dayIndex - 1;
-        if (dayIndex < 0) dayIndex = 6;
-      }
+<div class="banker">
+  <h2>🎯 Banker of the Day</h2>
+  <div class="game-name" id="gameName"></div>
+  <div id="bankerNum"></div>
+</div>
 
-      const days = [
-        "SUNDAY",
-        "MONDAY",
-        "TUESDAY",
-        "WEDNESDAY",
-        "THURSDAY",
-        "FRIDAY",
-        "SATURDAY"
-      ];
+<h1>Patterns Don’t Lie.</h1>
+<p>Advanced lotto pattern analysis for smarter predictions.</p>
 
-      return days[dayIndex];
-    }
+<div class="hero-buttons">
+  <a href="https://chat.whatsapp.com/Dqqy376DeAR8Wkf7OVKgdB" class="btn primary">Join Free Challenge</a>
+  <a href="https://wa.me/233533715064" class="btn secondary">Go VIP</a>
+</div>
 
-    const today = getLottoDay();
+</section>
 
-    document.getElementById("banker").textContent = bankers[today];
-    document.getElementById("day").textContent = labels[today];
-  </script>
+<footer class="footer">
+  <p>© 2025 Balotto. All rights reserved.</p>
+  <p class="slogan">Patterns don’t lie.</p>
+</footer>
 
-  <!-- SERVICE WORKER (FORCED UPDATE) -->
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js?v=4");
-    }
-  </script>
+<script>
+/* GAMES */
+const games=[
+ {name:"SUNDAY ASEDA",banker:"01"},
+ {name:"MONDAY SPECIAL",banker:"12"},
+ {name:"LUCKY TUESDAY",banker:"05"},
+ {name:"MID-WEEK",banker:"09"},
+ {name:"FORTUNE THURSDAY",banker:"14"},
+ {name:"FRIDAY BONANZA",banker:"30"},
+ {name:"NATIONAL WEEKLY",banker:"07"}
+];
+
+// ✅ STRICT 20:00 GMT
+function getGame(){
+  const now=new Date();
+  let d=now.getUTCDay();
+  if(now.getUTCHours()>=20) d=(d+1)%7;
+  return games[d];
+}
+
+const game=getGame();
+document.getElementById("gameName").textContent=game.name;
+document.getElementById("bankerNum").textContent=game.banker;
+
+/* QUOTES */
+const quotes=[
+"Numbers don’t lie, patterns speak.",
+"Chance favors the prepared mind.",
+"Behind randomness lies order.",
+"Patterns reveal truth."
+];
+let i=0;
+const q=document.getElementById("quoteText");
+setInterval(()=>{
+  q.textContent=quotes[i%quotes.length];
+  i++;
+},3000);
+
+/* PWA */
+let deferredPrompt;
+const btn=document.getElementById("a2hsBtn");
+window.addEventListener("beforeinstallprompt",e=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  btn.style.display="inline-block";
+});
+btn.onclick=()=>{deferredPrompt.prompt();};
+
+/* SERVICE WORKER */
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+
 </body>
 </html>
