@@ -223,103 +223,103 @@ body{background:#0b0b0b;color:#fff;}
 </footer>
 
 <script>
-/* GAMES */
-const games = [
- {name:"SUNDAY ASEDA", banker:"01"},
- {name:"MONDAY SPECIAL", banker:"12"},
- {name:"LUCKY TUESDAY", banker:"05"},
- {name:"MID-WEEK", banker:"09"},
- {name:"FORTUNE THURSDAY", banker:"14"},
- {name:"FRIDAY BONANZA", banker:"30"},
- {name:"NATIONAL WEEKLY", banker:"07"}
-];
+document.addEventListener("DOMContentLoaded", () => {
+    /* GAMES */
+    const games = [
+        {name:"SUNDAY ASEDA", banker:"01"},
+        {name:"MONDAY SPECIAL", banker:"12"},
+        {name:"LUCKY TUESDAY", banker:"05"},
+        {name:"MID-WEEK", banker:"09"},
+        {name:"FORTUNE THURSDAY", banker:"14"},
+        {name:"FRIDAY BONANZA", banker:"30"},
+        {name:"NATIONAL WEEKLY", banker:"07"}
+    ];
 
-// ✅ Correct 20:00 GMT logic
-function getGameIndexGMT20(){
-    const now = new Date();
-    let day = now.getUTCDay(); // 0 = Sunday
-    if(now.getUTCHours() >= 20){
-        day = (day + 1) % 7;
-    }
-    return day;
-}
-
-const game = games[getGameIndexGMT20()];
-document.getElementById("gameName").textContent = game.name;
-const bankerEl = document.getElementById("bankerNum");
-
-/* ANIMATION BANKER - fonctionne PC et Android */
-function animateBanker(){
-    let c = 0;
-    const maxCycles = 20; // nombre de changements aléatoires
-    const intervalTime = 100; // ms
-
-    const interval = setInterval(() => {
-        bankerEl.textContent = String(Math.floor(Math.random()*90)+1).padStart(2,'0');
-        c++;
-        if(c >= maxCycles){
-            clearInterval(interval);
-            bankerEl.textContent = game.banker;
-            // animation finale
-            bankerEl.style.animation = "bounce 1s infinite alternate, glow 1.8s infinite alternate";
+    // ✅ Correct 20:00 GMT logic
+    function getGameIndexGMT20(){
+        const now = new Date();
+        let day = now.getUTCDay(); // 0 = Sunday
+        if(now.getUTCHours() >= 20){
+            day = (day + 1) % 7;
         }
-    }, intervalTime);
-}
+        return day;
+    }
 
-// Appel initial
-animateBanker();
+    const game = games[getGameIndexGMT20()];
+    document.getElementById("gameName").textContent = game.name;
+    const bankerEl = document.getElementById("bankerNum");
 
-/* QUOTES */
-const quotes=[
-"Mathematics is the language of patterns — lottery is no exception.",
-"Chance favors the prepared mind.",
-"Randomness reveals structure over time.",
-"Probability rewards patience.",
-"Numbers don’t lie, patterns speak.",
-"Luck is probability misunderstood.",
-"Statistics is the grammar of chance.",
-"Behind randomness lies order.",
-"Every draw leaves a footprint.",
-"Repetition reveals truth.",
-"Chance has memory.",
-"Patterns emerge through observation.",
-"Random is not meaningless.",
-"Probability never forgets.",
-"Numbers repeat behavior.",
-"Chaos hides structure.",
-"Chance obeys laws.",
-"Patterns are silent teachers.",
-"Probability favors consistency.",
-"Mathematics turns luck into logic."
-];
+    function animateBanker(){
+        let c = 0;
+        const maxCycles = 20; 
+        const intervalTime = 100; 
 
-let qi=0;
-const qEl=document.getElementById("quoteText");
-function rotateQuotes(){
-    qEl.textContent=quotes[qi];
-    qi=(qi+1)%quotes.length;
-}
-rotateQuotes();
-setInterval(rotateQuotes,3000);
+        const interval = setInterval(() => {
+            bankerEl.textContent = String(Math.floor(Math.random()*90)+1).padStart(2,'0');
+            c++;
+            if(c >= maxCycles){
+                clearInterval(interval);
+                bankerEl.textContent = game.banker;
+                bankerEl.style.animation = "bounce 1s infinite alternate, glow 1.8s infinite alternate";
+            }
+        }, intervalTime);
+    }
 
-/* PWA */
-let deferredPrompt;
-const a2hsBtn=document.getElementById("a2hsBtn");
-window.addEventListener("beforeinstallprompt",e=>{
-    e.preventDefault();
-    deferredPrompt=e;
-    a2hsBtn.style.display="inline-block";
+    // assure le DOM et styles sont appliqués avant l'animation
+    setTimeout(animateBanker, 50);
+
+    /* QUOTES */
+    const quotes=[
+        "Mathematics is the language of patterns — lottery is no exception.",
+        "Chance favors the prepared mind.",
+        "Randomness reveals structure over time.",
+        "Probability rewards patience.",
+        "Numbers don’t lie, patterns speak.",
+        "Luck is probability misunderstood.",
+        "Statistics is the grammar of chance.",
+        "Behind randomness lies order.",
+        "Every draw leaves a footprint.",
+        "Repetition reveals truth.",
+        "Chance has memory.",
+        "Patterns emerge through observation.",
+        "Random is not meaningless.",
+        "Probability never forgets.",
+        "Numbers repeat behavior.",
+        "Chaos hides structure.",
+        "Chance obeys laws.",
+        "Patterns are silent teachers.",
+        "Probability favors consistency.",
+        "Mathematics turns luck into logic."
+    ];
+
+    let qi=0;
+    const qEl=document.getElementById("quoteText");
+    function rotateQuotes(){
+        qEl.textContent=quotes[qi];
+        qi=(qi+1)%quotes.length;
+    }
+    rotateQuotes();
+    setInterval(rotateQuotes,3000);
+
+    /* PWA */
+    let deferredPrompt;
+    const a2hsBtn=document.getElementById("a2hsBtn");
+    window.addEventListener("beforeinstallprompt", e => {
+        e.preventDefault();
+        deferredPrompt=e;
+        a2hsBtn.style.display="inline-block";
+    });
+    a2hsBtn.addEventListener("click", () => {
+        deferredPrompt.prompt();
+        deferredPrompt = null;
+        a2hsBtn.style.display="none";
+    });
+
+    /* SERVICE WORKER */
+    if("serviceWorker" in navigator){
+        navigator.serviceWorker.register("sw.js");
+    }
 });
-a2hsBtn.addEventListener("click",()=>{
-    deferredPrompt.prompt();
-    deferredPrompt=null;
-    a2hsBtn.style.display="none";
-});
-
-/* SERVICE WORKER */
-if("serviceWorker" in navigator){
-    navigator.serviceWorker.register("sw.js");
-}
 </script>
 
 </body>
