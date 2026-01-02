@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8SZBR3LX0E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SZBR3LX0E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8SZBR3LX0E');
+    </script>
 
-  gtag('config', 'G-8SZBR3LX0E');
-</script>
-<meta charset="UTF-8">
-<title>Balotto — Smart Lotto Patterns</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <title>Balotto — Smart Lotto Patterns</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
 
 <style>
 /* RESET */
@@ -27,13 +27,13 @@ body{background:#0b0b0b;color:#fff;}
     background:linear-gradient(180deg,#000 0%,#111 100%);
 }
 
-/* ADD TO HOME SCREEN BUTTON */
+/* ADD TO HOME SCREEN */
 .a2hs-btn{
     display:none;
     padding:12px 28px;
     font-weight:bold;
     border-radius:6px;
-    margin:0 auto 25px auto;
+    margin:0 auto 25px;
     background:#f5c76b;
     color:#000;
     border:none;
@@ -41,20 +41,17 @@ body{background:#0b0b0b;color:#fff;}
 }
 
 /* QUOTES */
-.quotes{
-    margin-bottom:25px;
-    min-height:40px;
-}
+.quotes{margin-bottom:25px;min-height:40px;}
 .quote-text{
     font-size:16px;
     font-style:italic;
     color:#d8d8d8;
     opacity:0;
-    animation: fadeQuote 3s infinite;
+    animation:fadeQuote 3s infinite;
 }
 @keyframes fadeQuote{
     0%{opacity:0;transform:translateY(8px);}
-    20%{opacity:1;transform:translateY(0);}
+    20%{opacity:1;}
     80%{opacity:1;}
     100%{opacity:0;transform:translateY(-8px);}
 }
@@ -67,9 +64,7 @@ body{background:#0b0b0b;color:#fff;}
     gap:14px;
     margin-bottom:25px;
 }
-.hero-logo img{
-    height:60px;
-}
+.hero-logo img{height:60px;}
 .hero-logo span{
     font-size:32px;
     font-weight:bold;
@@ -90,8 +85,17 @@ body{background:#0b0b0b;color:#fff;}
     font-weight:bold;
     margin-top:10px;
     display:inline-block;
-    animation: glow 1.8s infinite alternate;
+    animation:glow 1.8s infinite alternate;
 }
+@keyframes glow{
+    0%{text-shadow:0 0 6px rgba(245,199,107,.4);}
+    100%{text-shadow:0 0 22px rgba(245,199,107,.9);}
+}
+@keyframes bounce{
+    from{transform:translateY(0);}
+    to{transform:translateY(-15px);}
+}
+
 .results-link{
     display:block;
     margin-top:15px;
@@ -99,28 +103,19 @@ body{background:#0b0b0b;color:#fff;}
     font-weight:bold;
     text-decoration:none;
 }
-.results-link:hover{text-decoration:underline;}
-
-@keyframes bounce{
-    from{transform:translateY(0);}
-    to{transform:translateY(-15px);}
-}
-@keyframes glow{
-    0%{text-shadow:0 0 6px rgba(245,199,107,0.4);}
-    100%{text-shadow:0 0 22px rgba(245,199,107,0.9);}
-}
 
 /* TEXT */
 .hero h1{font-size:48px;margin-bottom:20px;color:#f5c76b;}
 .hero p{font-size:18px;opacity:.9;}
+
 .hero-buttons{margin-top:40px;}
 .btn{
     padding:14px 30px;
-    text-decoration:none;
     font-weight:bold;
     border-radius:6px;
     margin:10px;
     display:inline-block;
+    text-decoration:none;
 }
 .primary{background:#f5c76b;color:#000;}
 .secondary{border:2px solid #f5c76b;color:#f5c76b;}
@@ -174,44 +169,37 @@ body{background:#0b0b0b;color:#fff;}
 
 <section class="hero">
 
-    <!-- ADD TO HOME SCREEN -->
-    <button class="a2hs-btn" id="a2hsBtn">Add to Home Screen</button>
+<button class="a2hs-btn" id="a2hsBtn">Add to Home Screen</button>
 
-    <!-- QUOTES -->
-    <div class="quotes">
-        <div class="quote-text" id="quoteText">—</div>
-    </div>
+<div class="quotes">
+    <div class="quote-text" id="quoteText">—</div>
+</div>
 
-    <!-- LOGO -->
-    <div class="hero-logo">
-        <img src="assets/logo.png" alt="Balotto">
-        <span>Balotto</span>
-    </div>
+<div class="hero-logo">
+    <img src="assets/logo.png" alt="Balotto">
+    <span>Balotto</span>
+</div>
 
-    <!-- BANKER -->
-    <div class="banker">
-        <h2>🎯 Banker of the Day</h2>
-        <div class="game-name" id="gameName">—</div>
-        <div id="bankerNum">—</div>
+<div class="banker">
+    <h2>🎯 Banker of the Day</h2>
+    <div class="game-name" id="gameName">—</div>
+    <div id="bankerNum">—</div>
+    <a class="results-link" href="https://whatsapp.com/channel/0029VaZsaFEB4hdUcYlCZn46" target="_blank">
+        View Results →
+    </a>
+</div>
 
-        <a class="results-link"
-           href="https://whatsapp.com/channel/0029VaZsaFEB4hdUcYlCZn46"
-           target="_blank">
-           View Results →
-        </a>
-    </div>
+<h1>Patterns Don’t Lie.</h1>
+<p>Advanced lotto pattern analysis for smarter predictions.</p>
 
-    <h1>Patterns Don’t Lie.</h1>
-    <p>Advanced lotto pattern analysis for smarter predictions.</p>
-
-    <div class="hero-buttons">
-        <a href="https://chat.whatsapp.com/Dqqy376DeAR8Wkf7OVKgdB" class="btn primary" target="_blank">
-            Join Free Challenge
-        </a>
-        <a href="https://wa.me/233533715064" class="btn secondary" target="_blank">
-            Go VIP
-        </a>
-    </div>
+<div class="hero-buttons">
+    <a href="https://chat.whatsapp.com/Dqqy376DeAR8Wkf7OVKgdB" class="btn primary" target="_blank">
+        Join Free Challenge
+    </a>
+    <a href="https://wa.me/233533715064" class="btn secondary" target="_blank">
+        Go VIP
+    </a>
+</div>
 </section>
 
 <section class="features">
@@ -246,16 +234,17 @@ const games = [
  {name:"NATIONAL WEEKLY", banker:"07"}
 ];
 
-// GMT-based day change at 20:00 GMT
-const now = new Date();
-const gmtHour = now.getUTCHours();
-const gmtMinute = now.getUTCMinutes();
-let dayIndex = now.getUTCDay();
-if(gmtHour > 20 || (gmtHour === 20 && gmtMinute >= 0)){
-    dayIndex = (dayIndex + 1) % 7;
+// ✅ Correct 20:00 GMT logic
+function getGameIndexGMT20(){
+    const now = new Date();
+    let day = now.getUTCDay(); // 0 = Sunday
+    if(now.getUTCHours() >= 20){
+        day = (day + 1) % 7;
+    }
+    return day;
 }
 
-const game = games[dayIndex];
+const game = games[getGameIndexGMT20()];
 document.getElementById("gameName").textContent = game.name;
 const bankerEl = document.getElementById("bankerNum");
 
@@ -275,26 +264,26 @@ animateBanker();
 
 /* QUOTES */
 const quotes=[
- "Mathematics is the language of patterns — lottery is no exception.",
- "Chance favors the prepared mind.",
- "Randomness reveals structure over time.",
- "Probability rewards patience.",
- "Numbers don’t lie, patterns speak.",
- "Luck is probability misunderstood.",
- "Statistics is the grammar of chance.",
- "Behind randomness lies order.",
- "Every draw leaves a footprint.",
- "Repetition reveals truth.",
- "Chance has memory.",
- "Patterns emerge through observation.",
- "Random is not meaningless.",
- "Probability never forgets.",
- "Numbers repeat behavior.",
- "Chaos hides structure.",
- "Chance obeys laws.",
- "Patterns are silent teachers.",
- "Probability favors consistency.",
- "Mathematics turns luck into logic."
+"Mathematics is the language of patterns — lottery is no exception.",
+"Chance favors the prepared mind.",
+"Randomness reveals structure over time.",
+"Probability rewards patience.",
+"Numbers don’t lie, patterns speak.",
+"Luck is probability misunderstood.",
+"Statistics is the grammar of chance.",
+"Behind randomness lies order.",
+"Every draw leaves a footprint.",
+"Repetition reveals truth.",
+"Chance has memory.",
+"Patterns emerge through observation.",
+"Random is not meaningless.",
+"Probability never forgets.",
+"Numbers repeat behavior.",
+"Chaos hides structure.",
+"Chance obeys laws.",
+"Patterns are silent teachers.",
+"Probability favors consistency.",
+"Mathematics turns luck into logic."
 ];
 
 let qi=0;
@@ -306,36 +295,25 @@ function rotateQuotes(){
 rotateQuotes();
 setInterval(rotateQuotes,3000);
 
-/* PWA: Add to Home Screen */
+/* PWA */
 let deferredPrompt;
-const a2hsBtn = document.getElementById('a2hsBtn');
-
-window.addEventListener('beforeinstallprompt', (e)=>{
+const a2hsBtn=document.getElementById("a2hsBtn");
+window.addEventListener("beforeinstallprompt",e=>{
     e.preventDefault();
-    deferredPrompt = e;
-    a2hsBtn.style.display = 'inline-block';
+    deferredPrompt=e;
+    a2hsBtn.style.display="inline-block";
 });
-
-a2hsBtn.addEventListener('click', ()=>{
-    if(deferredPrompt){
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(choice=>{
-            deferredPrompt=null;
-            a2hsBtn.style.display='none';
-        });
-    }
+a2hsBtn.addEventListener("click",()=>{
+    deferredPrompt.prompt();
+    deferredPrompt=null;
+    a2hsBtn.style.display="none";
 });
 
 /* SERVICE WORKER */
 if("serviceWorker" in navigator){
-    window.addEventListener("load", ()=>{
-        navigator.serviceWorker.register("sw.js")
-        .then(reg => console.log("Service Worker registered"))
-        .catch(err => console.log("Service Worker error", err));
-    });
+    navigator.serviceWorker.register("sw.js");
 }
 </script>
 
 </body>
-
 </html>
