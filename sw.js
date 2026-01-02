@@ -1,31 +1,43 @@
-const CACHE_NAME = "balotto-v3"; // ← CHANGE LE NUMÉRO À CHAQUE UPDATE
-const FILES_TO_CACHE = [
-  "/balotto/",
-  "/balotto/index.html",
-  "/balotto/manifest.json",
-  "/balotto/assets/logo.png"
+const CACHE_NAME = 'balotto-cache-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/assets/logo.png',
+  // ajoute ici d'autres assets si besoin
 ];
 
-self.addEventListener("install", e => {
-  self.skipWaiting();
-  e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE))
+// Installer le service worker et mettre en cache les fichiers essentiels
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(urlsToCache))
+      .then(() => self.skipWaiting())
   );
 });
 
-self.addEventListener("activate", e => {
-  e.waitUntil(
+// Activer le service worker et nettoyer les anciens caches
+self.addEventListener('activate', event => {
+  event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
-        keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
+        keys.map(key => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        })
       )
-    )
+    ).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
-self.addEventListener("fetch", e => {
-  e.respondWith(
-    caches.match(e.request).then(res => res || fetch(e.request))
+// Intercepter les requêtes et répondre depuis le cache si disponible
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(cached => {
+        // retourne le cache si trouvé, sinon fetch normalement
+        return cached || fetch(event.request);
+      })
   );
 });
