@@ -2,16 +2,12 @@
   "name": "Balotto — Smart Lotto Patterns",
   "short_name": "Balotto",
   "description": "Advanced lotto pattern analysis for smarter predictions.",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/balotto/index.html",
   "display": "standalone",
-  "orientation": "portrait",
   "background_color": "#0b0b0b",
   "theme_color": "#f5c76b",
   "lang": "en",
   "dir": "ltr",
-  "categories": ["games", "entertainment"],
-  "prefer_related_applications": false,
   "icons": [
     {
       "src": "assets/icon-192.png",
@@ -37,5 +33,8 @@
       "sizes": "1080x1920",
       "type": "image/png"
     }
-  ]
+  ],
+  "categories": ["games", "entertainment", "lottery"],
+  "scope": "/balotto/",
+  "prefer_related_applications": false
 }
