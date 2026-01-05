@@ -1,42 +1,38 @@
-const CACHE_NAME = 'balotto-cache-v1';
-const urlsToCache = [
-  '/',
-  '/balotto/index.html',
-  '/balotto/assets/logo.png',
-  '/balotto/assets/icon-192.png',
-  '/balotto/assets/icon-512.png',
-  '/balotto/assets/screen1.png',
-  '/balotto/assets/screen2.png',
-  '/balotto/style.css',   // si tu sépares ton CSS
-  '/balotto/app.js'       // si tu sépares ton JS
-];
-
-// Installer le SW et mettre en cache les ressources
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
-  );
-  self.skipWaiting();
-});
-
-// Activer le SW et nettoyer l’ancien cache si besoin
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.map(key => {
-        if(key !== CACHE_NAME) return caches.delete(key);
-      }))
-    )
-  );
-  self.clients.claim();
-});
-
-// Intercepter les requêtes et servir depuis le cache si disponible
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
-  );
-});
+{
+  "name": "Balotto",
+  "short_name": "Balotto",
+  "description": "Advanced lotto pattern analysis for smarter predictions.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/balotto/index.html",
+  "scope": "/balotto/",
+  "display": "standalone",
+  "background_color": "#0b0b0b",
+  "theme_color": "#f5c76b",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screen1.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/screen2.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["games", "entertainment"],
+  "prefer_related_applications": false
+}
