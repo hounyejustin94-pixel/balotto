@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SZBR3LX0E"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -13,61 +13,57 @@
     <meta charset="UTF-8">
     <title>Balotto — Smart Lotto Patterns</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
 
-<style>
-/* RESET */
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
-body{background:#0b0b0b;color:#fff;}
+    <style>
+        /* RESET */
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+        body{background:#0b0b0b;color:#fff;}
 
-/* HERO */
-.hero{text-align:center;padding:120px 20px;background:linear-gradient(180deg,#000 0%,#111 100%);}
+        /* HERO */
+        .hero{text-align:center;padding:120px 20px;background:linear-gradient(180deg,#000 0%,#111 100%);}
+        .a2hs-btn{display:none;padding:12px 28px;font-weight:bold;border-radius:6px;margin:0 auto 25px;background:#f5c76b;color:#000;border:none;cursor:pointer;}
+        .quotes{margin-bottom:25px;min-height:40px;}
+        .quote-text{font-size:16px;font-style:italic;color:#d8d8d8;opacity:0;animation:fadeQuote 3s infinite;}
+        @keyframes fadeQuote{0%{opacity:0;transform:translateY(8px);}20%{opacity:1;}80%{opacity:1;}100%{opacity:0;transform:translateY(-8px);}}
 
-/* ADD TO HOME SCREEN */
-.a2hs-btn{display:none;padding:12px 28px;font-weight:bold;border-radius:6px;margin:0 auto 25px;background:#f5c76b;color:#000;border:none;cursor:pointer;}
+        /* LOGO */
+        .hero-logo{display:flex;justify-content:center;align-items:center;gap:14px;margin-bottom:25px;}
+        .hero-logo img{height:60px;}
+        .hero-logo span{font-size:32px;font-weight:bold;color:#f5c76b;}
 
-/* QUOTES */
-.quotes{margin-bottom:25px;min-height:40px;}
-.quote-text{font-size:16px;font-style:italic;color:#d8d8d8;opacity:0;animation:fadeQuote 3s infinite;}
-@keyframes fadeQuote{0%{opacity:0;transform:translateY(8px);}20%{opacity:1;}80%{opacity:1;}100%{opacity:0;transform:translateY(-8px);}}
+        /* BANKER */
+        .banker{margin-bottom:40px;}
+        .banker h2{color:#f5c76b;font-size:28px;}
+        .banker .game-name{margin-top:10px;font-size:20px;font-weight:bold;color:#f5c76b;}
+        #bankerNum{font-size:64px;font-weight:bold;margin-top:10px;display:inline-block;animation:glow 1.8s infinite alternate;}
+        @keyframes glow{0%{text-shadow:0 0 6px rgba(245,199,107,.4);}100%{text-shadow:0 0 22px rgba(245,199,107,.9);}}
+        @keyframes bounce{from{transform:translateY(0);}to{transform:translateY(-15px);}}
+        .results-link{display:block;margin-top:15px;color:#25D366;font-weight:bold;text-decoration:none;}
 
-/* LOGO */
-.hero-logo{display:flex;justify-content:center;align-items:center;gap:14px;margin-bottom:25px;}
-.hero-logo img{height:60px;}
-.hero-logo span{font-size:32px;font-weight:bold;color:#f5c76b;}
+        /* TEXT */
+        .hero h1{font-size:48px;margin-bottom:20px;color:#f5c76b;}
+        .hero p{font-size:18px;opacity:.9;}
+        .hero-buttons{margin-top:40px;}
+        .btn{padding:14px 30px;font-weight:bold;border-radius:6px;margin:10px;display:inline-block;text-decoration:none;}
+        .primary{background:#f5c76b;color:#000;}
+        .secondary{border:2px solid #f5c76b;color:#f5c76b;}
+        .secondary:hover{background:#f5c76b;color:#000;}
 
-/* BANKER */
-.banker{margin-bottom:40px;}
-.banker h2{color:#f5c76b;font-size:28px;}
-.banker .game-name{margin-top:10px;font-size:20px;font-weight:bold;color:#f5c76b;}
-#bankerNum{font-size:64px;font-weight:bold;margin-top:10px;display:inline-block;animation:glow 1.8s infinite alternate;}
-@keyframes glow{0%{text-shadow:0 0 6px rgba(245,199,107,.4);}100%{text-shadow:0 0 22px rgba(245,199,107,.9);}}
-@keyframes bounce{from{transform:translateY(0);}to{transform:translateY(-15px);}}
+        /* FEATURES */
+        .features{display:flex;justify-content:center;flex-wrap:wrap;gap:30px;padding:80px 20px;background:#0f0f0f;}
+        .feature{background:#151515;padding:30px;width:260px;border-radius:10px;}
+        .feature h3{color:#f5c76b;margin-bottom:15px;}
 
-.results-link{display:block;margin-top:15px;color:#25D366;font-weight:bold;text-decoration:none;}
+        /* FOOTER */
+        .footer{text-align:center;padding:30px;background:#000;font-size:14px;opacity:.7;}
+        .footer .slogan{margin-top:8px;color:#f5c76b;}
 
-/* TEXT */
-.hero h1{font-size:48px;margin-bottom:20px;color:#f5c76b;}
-.hero p{font-size:18px;opacity:.9;}
-
-.hero-buttons{margin-top:40px;}
-.btn{padding:14px 30px;font-weight:bold;border-radius:6px;margin:10px;display:inline-block;text-decoration:none;}
-.primary{background:#f5c76b;color:#000;}
-.secondary{border:2px solid #f5c76b;color:#f5c76b;}
-.secondary:hover{background:#f5c76b;color:#000;}
-
-/* FEATURES */
-.features{display:flex;justify-content:center;flex-wrap:wrap;gap:30px;padding:80px 20px;background:#0f0f0f;}
-.feature{background:#151515;padding:30px;width:260px;border-radius:10px;}
-.feature h3{color:#f5c76b;margin-bottom:15px;}
-
-/* FOOTER */
-.footer{text-align:center;padding:30px;background:#000;font-size:14px;opacity:.7;}
-.footer .slogan{margin-top:8px;color:#f5c76b;}
-
-/* WHATSAPP */
-.whatsapp-btn{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:14px 18px;border-radius:50px;font-weight:bold;text-decoration:none;}
-</style>
+        /* WHATSAPP */
+        .whatsapp-btn{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:14px 18px;border-radius:50px;font-weight:bold;text-decoration:none;}
+    </style>
 </head>
 
 <body>
@@ -76,37 +72,37 @@ body{background:#0b0b0b;color:#fff;}
 
 <section class="hero">
 
-<button class="a2hs-btn" id="a2hsBtn">Add to Home Screen</button>
+    <button class="a2hs-btn" id="a2hsBtn">Add to Home Screen</button>
 
-<div class="quotes">
-    <div class="quote-text" id="quoteText">—</div>
-</div>
+    <div class="quotes">
+        <div class="quote-text" id="quoteText">—</div>
+    </div>
 
-<div class="hero-logo">
-    <img src="assets/logo.png" alt="Balotto">
-    <span>Balotto</span>
-</div>
+    <div class="hero-logo">
+        <img src="assets/logo.png" alt="Balotto">
+        <span>Balotto</span>
+    </div>
 
-<div class="banker">
-    <h2>🎯 Banker of the Day</h2>
-    <div class="game-name" id="gameName">—</div>
-    <div id="bankerNum">—</div>
-    <a class="results-link" href="https://whatsapp.com/channel/0029VaZsaFEB4hdUcYlCZn46" target="_blank">
-        View Results →
-    </a>
-</div>
+    <div class="banker">
+        <h2>🎯 Banker of the Day</h2>
+        <div class="game-name" id="gameName">—</div>
+        <div id="bankerNum">—</div>
+        <a class="results-link" href="https://whatsapp.com/channel/0029VaZsaFEB4hdUcYlCZn46" target="_blank">
+            View Results →
+        </a>
+    </div>
 
-<h1>Patterns Don’t Lie.</h1>
-<p>Advanced lotto pattern analysis for smarter predictions.</p>
+    <h1>Patterns Don’t Lie.</h1>
+    <p>Advanced lotto pattern analysis for smarter predictions.</p>
 
-<div class="hero-buttons">
-    <a href="https://chat.whatsapp.com/Dqqy376DeAR8Wkf7OVKgdB" class="btn primary" target="_blank">
-        Join Free Challenge
-    </a>
-    <a href="https://wa.me/233533715064" class="btn secondary" target="_blank">
-        Go VIP
-    </a>
-</div>
+    <div class="hero-buttons">
+        <a href="https://chat.whatsapp.com/Dqqy376DeAR8Wkf7OVKgdB" class="btn primary" target="_blank">
+            Join Free Challenge
+        </a>
+        <a href="https://wa.me/233533715064" class="btn secondary" target="_blank">
+            Go VIP
+        </a>
+    </div>
 </section>
 
 <section class="features">
@@ -155,7 +151,7 @@ const game = games[getGameIndexGMT20()];
 document.getElementById("gameName").textContent = game.name;
 const bankerEl = document.getElementById("bankerNum");
 
-// 🎯 Banker animation infini
+// 🎯 Banker animation infinie avec pause 3s
 function animateBanker() {
     let c = 0;
     const maxCycles = 20;
@@ -168,8 +164,7 @@ function animateBanker() {
             clearInterval(interval);
             bankerEl.textContent = game.banker;
             bankerEl.style.animation = "bounce 1s infinite alternate, glow 1.8s infinite alternate";
-            
-            // Recommence après 3s
+
             setTimeout(() => {
                 bankerEl.style.animation = "";
                 animateBanker();
@@ -178,7 +173,6 @@ function animateBanker() {
     }, intervalTime);
 }
 
-// Appel initial
 animateBanker();
 
 /* QUOTES */
@@ -213,26 +207,22 @@ setInterval(rotateQuotes,3000);
 /* PWA */
 let deferredPrompt;
 const a2hsBtn=document.getElementById("a2hsBtn");
-window.addEventListener("beforeinstallprompt",e=>{
+window.addEventListener("beforeinstallprompt", e => {
     e.preventDefault();
-    deferredPrompt=e;
-    a2hsBtn.style.display="inline-block";
+    deferredPrompt = e;
+    a2hsBtn.style.display = "inline-block";
 });
-a2hsBtn.addEventListener("click",()=>{
+a2hsBtn.addEventListener("click", () => {
     deferredPrompt.prompt();
-    deferredPrompt=null;
-    a2hsBtn.style.display="none";
+    deferredPrompt = null;
+    a2hsBtn.style.display = "none";
 });
 
 /* SERVICE WORKER */
-if("serviceWorker" in navigator){
+if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js");
 }
 </script>
 
 </body>
 </html>
-
-
-
-
