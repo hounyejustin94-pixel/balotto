@@ -1,8 +1,9 @@
 {
-  "name": "Balotto — Smart Lotto Patterns",
+  "id": "https://hounyejustin94-pixel.github.io/balotto",
+  "name": "Balotto",
   "short_name": "Balotto",
-  "description": "Advanced lotto pattern analysis. Patterns don’t lie.",
-  "start_url": "./index.html",
+  "description": "Smart lotto pattern analysis with daily challenges and VIP predictions",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#0b0b0b",
   "theme_color": "#f5c76b",
@@ -16,6 +17,18 @@
     {
       "src": "assets/icon-512.png",
       "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screen1.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/screen2.png",
+      "sizes": "1080x1920",
       "type": "image/png"
     }
   ]
