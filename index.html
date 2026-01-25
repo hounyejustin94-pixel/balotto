@@ -85,6 +85,13 @@
 
     <div class="banker">
         <h2>🎯 Banker of the Day</h2>
+        <div class="banker mini-banker">
+    <h2>⚡ Live Numbers</h2>
+    <div class="game-name" id="miniGameName">—</div>
+    <div id="miniNumbers" style="font-size:32px;font-weight:bold;margin-top:10px;letter-spacing:4px;">
+        00-00-00-00-00
+    </div>
+</div>
         <div class="game-name" id="gameName">—</div>
         <div id="bankerNum">—</div>
         <a class="results-link" href="https://whatsapp.com/channel/0029VaZsaFEB4hdUcYlCZn46" target="_blank">
@@ -148,6 +155,93 @@ function getGameIndexGMT20(){
 }
 
 const game = games[getGameIndexGMT20()];
+    const miniGames = {
+  MONDAY: {
+    VAG: ["43","56","58","87","89"],
+    NOON: ["12","34","46","71","80"]
+  },
+  TUESDAY: {
+    VAG: ["10","22","39","54","68"],
+    NOON: ["05","18","47","66","72"]
+  },
+  WEDNESDAY: {
+    VAG: ["06","19","46","64","53"],
+    NOON: ["11","27","44","59","88"]
+  },
+  THURSDAY: {
+    VAG: ["07","21","47","60","73"],
+    NOON: ["14","33","52","69","81"]
+  },
+  FRIDAY: {
+    VAG: ["10","25","41","58","90"],
+    NOON: ["09","26","37","63","79"]
+  },
+  SATURDAY: {
+    VAG: ["23","38","49","67","82"],
+    NOON: ["15","29","45","70","86"]
+  }
+};
+    function getMiniGame() {
+    const now = new Date();
+    const h = now.getUTCHours() + now.getUTCMinutes()/60;
+    const dayIndex = now.getUTCDay(); // 1 = Monday
+
+    const days = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
+    const day = days[dayIndex];
+
+    if(day === "SUNDAY") return null;
+
+    if(h >= 0 && h < 10){
+        return { name:`VAG ${day}`, numbers: miniGames[day].VAG };
+    }
+
+    if(h >= 10 && h < 13.5){
+        return { name:`NOON RUSH ${day}`, numbers: miniGames[day].NOON };
+    }
+
+    return null;
+}
+    const miniGame = getMiniGame();
+const miniNameEl = document.getElementById("miniGameName");
+const miniNumsEl = document.getElementById("miniNumbers");
+
+if(miniGame){
+    miniNameEl.textContent = miniGame.name;
+
+    function animateMini() {
+        let display = ["00","00","00","00","00"];
+        let index = 0;
+
+        function spinNext(){
+            let spins = 0;
+            const spin = setInterval(() => {
+                display[index] = String(Math.floor(Math.random()*90)+1).padStart(2,"0");
+                miniNumsEl.textContent = display.join("-");
+                spins++;
+
+                if(spins > 15){
+                    clearInterval(spin);
+                    display[index] = miniGame.numbers[index];
+                    miniNumsEl.textContent = display.join("-");
+                    index++;
+
+                    if(index < 5){
+                        setTimeout(spinNext, 400);
+                    } else {
+                        setTimeout(animateMini, 4000);
+                    }
+                }
+            }, 80);
+        }
+
+        spinNext();
+    }
+
+    animateMini();
+} else {
+    miniNameEl.textContent = "—";
+    miniNumsEl.textContent = "00-00-00-00-00";
+}
 document.getElementById("gameName").textContent = game.name;
 const bankerEl = document.getElementById("bankerNum");
 
@@ -226,6 +320,7 @@ if ("serviceWorker" in navigator) {
 
 </body>
 </html>
+
 
 
 
